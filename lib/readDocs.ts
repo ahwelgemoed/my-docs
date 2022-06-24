@@ -5,7 +5,7 @@ import { join, resolve } from "node:path";
 import remarkDirective from "remark-directive";
 import remarkGfm from "remark-gfm";
 import remarkParse from "remark-parse";
-import remarkPrettier from "remark-prettier";
+// import remarkPrettier from "remark-prettier";
 import remarkRehype from "remark-rehype";
 import rehypeRaw from "rehype-raw";
 import rehypeStringify from "rehype-stringify";
@@ -88,7 +88,7 @@ export async function getFileData(path: string) {
   const matterResult = await matter(rawFileData);
   const processedContent = await unified()
     .use(remarkParse)
-    .use(remarkPrettier)
+    // .use(remarkPrettier)
     .use(remarkDirective)
     .use(remarkGfm)
     .use(() => myRemarkPlugin(fullPath, matterResult) as any)
