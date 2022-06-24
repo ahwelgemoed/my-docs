@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html,
 body {
   padding: 0;
@@ -13,4 +17,90 @@ a {
 
 * {
   box-sizing: border-box;
+}
+h2 {
+  font-size: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+h3 {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+h4 {
+  font-size: 16px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-decoration: underline;
+}
+li {
+  /* margin: 20px;
+  */
+  /* background-color: #efefef;
+  */
+  padding: 8px;
+}
+ul {
+  list-style-type: circle;
+  padding: 8px;
+}
+table {
+  text-align: left;
+}
+table thead {
+  padding: 12px;
+  text-align: left;
+  background-color: #7b38ed;
+  color: white;
+}
+table thead th {
+  padding: 16px;
+}
+table tbody {
+  border-collapse: collapse;
+}
+table tbody tr:nth-child(even) {
+  background-color: #f8f8f8;
+}
+table tbody td,
+table tbody th {
+  border: 1px solid #ddd;
+  padding: 16px;
+}
+table tbody ul li {
+  padding: 0px;
+  padding-left: 10px;
+}
+img {
+  padding: 20px;
+}
+.dark tbody {
+  border-collapse: collapse;
+}
+.dark tbody tr:nth-child(even) {
+  background-color: #3e3e3e;
+  color: white;
+}
+pre code {
+  font-family: monospace;
+  display: block;
+  background: none;
+  white-space: pre;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: scroll;
+  max-width: 100%;
+  min-width: 100px;
+  padding: 10px;
+  margin: 10px;
+  font-size: 14px;
+}
+p {
+  margin: 10px;
+  line-height: normal;
+}
+article a {
+  text-decoration: underline;
+  color: #3b82f6;
 }
