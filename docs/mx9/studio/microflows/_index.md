@@ -57,6 +57,7 @@ You can perform the following basic functions when working on microflows:
 * [Copy and paste a microflow](#copy-paste)
 * [Delete a microflow](#delete)
 * [Add elements to a microflow](#add-elements)
+* [Disable an activity](#disable)
 
 ### 3.1 Opening a Microflow {#open}
 
@@ -137,6 +138,22 @@ To add a new activity or event to the microflow, do the following:
 3. Select the event or activity in the **General**, **Object Activities** or **Client Activities** section.
 4. Drag and drop the event or activity in the microflow. 
 
+### 3.7 Disabling an Activity {#disable}
+
+You can disable an activity from the flow, which means that when running your microflow these disabled activities are skipped. This can be useful when you are in the process of building and testing your microflow and want to temporary exclude an activity from the flow. 
+
+To disable an activity, do the following:
+
+1. Select the activity you would like to disable from the flow.
+
+2. In the **Properties** tab, click the **More** icon at the bottom (next to the **Delete** button):
+
+    {{< figure src="/attachments/studio/microflows/disable-activity.png" alt="Disabling an Activity" >}}
+
+3. Click **Disable**. 
+
+The activity is excluded from the flow. You can re-enable the activity back in the **Properties** tab.
+
 ## 4 Toolbox Elements {#microflows-toolbox}
 
 The **Toolbox** tab contains elements that you can drag and drop on to a microflow. Below is a categorized overview of all elements. The following sections are used:
@@ -145,6 +162,7 @@ The **Toolbox** tab contains elements that you can drag and drop on to a microfl
 * [Object Activities](#microflow-object-activities)
 * [Client Activities](#microflow-client-activities)
 * [Workflow Activities](#microflow-workflow-activities)
+* [Workflow Administration](#workflow-administration)
 * [Variable Activities](#microflow-variable-activities)
 
 ### 4.1 General {#microflow-general-section}
@@ -171,9 +189,7 @@ Elements available in the **General** section are described in the table below.
 
 The **Object Activities** section contains activities that interact with an object or objects (for more information on what an object is, see [Domain Model](/studio/domain-models/)): 
 
-{{< figure src="/attachments/studio/microflows/object-activities.png" alt="Microflow Object Activities"   width="350"  >}}
-
-
+{{< figure src="/attachments/studio/microflows/object-activities.png" alt="Microflow Object Activities"   width="300"  >}}
 
 The **Object Activities** are described in the table below.
 
@@ -205,18 +221,24 @@ The **Client Activities** are described in the table below.
 
 The **Workflow Activities** section contain activities that interact with workflows:
 
-{{< figure src="/attachments/studio/microflows/workflow-activities.jpg" alt="Workflow Activities" >}} 
+{{< figure src="/attachments/studio/microflows/workflow-activities.jpg" alt="Workflow Activities" width="350"  >}} 
 
 The **Workflow Activities** are described in the table below:
 
-| Activity            | Description                                                  |
-| ------------------- | ------------------------------------------------------------ |
-| Call Workflow       | The **Call Workflow** activity starts the selected workflow. |
-| Complete Task       | The **Complete Task** activity sets an outcome the specified [user task](/studio/workflows-user-task/) should follow. When a user task has several outcomes, you can choose the one the user task will follow. For example, when end-users select that an employee is working from home, the user task will follow the dedicated path for it. |
-| Show User Task Page | The **Show User Task Page** activity opens a user task page specified in [user task properties](/studio/workflows-user-task/). |
-| Show Workflow Page  | The **Show Workflow Page** activity opens a workflow overview page. |
+| Activity               | Description                                                  |
+| ---------------------- | ------------------------------------------------------------ |
+| Call Workflow          | The **Call Workflow** activity starts the selected workflow. |
+| Complete Task          | The **Complete Task** activity sets an outcome the specified [user task](/studio/workflows-user-task/) should follow. When a user task has several outcomes, you can choose the one the user task will follow. For example, when end-users select that an employee is working from home, the user task will follow the dedicated path for it. |
+| Retrieve Workflow Data | The **Retrieve Workflow Data** activity can be used to retrieve the selected Workflow Context entity. The action determines the return type based on the selected workflow (the configured Workflow Context entity of that workflow). |
+| Show User Task Page    | The **Show User Task Page** activity opens a user task page specified in [user task properties](/studio/workflows-user-task/). |
 
-### 4.5 Variable Activities {#microflow-variable-activities}
+### 4.5 Workflow Administration {#workflow-administration}
+
+This section contains the **Show Workflow Page** activity that opens a workflow overview page.
+
+{{< figure src="/attachments/studio/microflows/workflow-administration.jpg" alt="Workflow Administration" width="300"  >}} 
+
+### 4.6 Variable Activities {#microflow-variable-activities}
 
 The **Variable Activities** section contain activities that manipulate variables: 
 
@@ -259,5 +281,3 @@ When configuring the activities of microflows you will notice icons above or und
 * [Mendix Assist](/studio/mx-assist/) – describes an artificial intelligence-powered agent that helps you configure microflows
 * [Decision](/studio/microflows-decision/) – explains what a decision is and describes its properties
 * [Loop](/studio/microflows-loop/) – explains what a loop is and describes its properties
-* [Microflow Expressions](/studio/expressions/) – explains how to use microflow expressions
-* [Set & Change a Value for Different Activities in the Microflows](/studio/microflows-setting-and-changing-value/) – explains how to set or/and change a value for microflow activities

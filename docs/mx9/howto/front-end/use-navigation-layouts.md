@@ -11,7 +11,7 @@ tags: ["Atlas UI", "User Experience", "Navigation", "Responsive Design", "Sideba
 
 This document will cover the basics of how you work with navigation layouts. 
 
-**This how-to will teach you how to do the following:**
+This how-to will teach you how to do the following:
 
 * Select the right navigation layout
 * Understand the difference between top and left navigation
@@ -203,7 +203,7 @@ To toggle the sidebar for Pushing content aside, follow these steps:
 
 5.  In your emulated device's browser window, click the toggle button:
 
-	{{< figure src="/attachments/howto/front-end/use-navigation-layouts/3.6_pushingcontentaside.gif"   width="350"  >}}
+	{{< figure src="/attachments/howto/front-end/use-navigation-layouts/2.2_pushingcontentaside.gif"   width="350"  >}}
 
 ### 3.7 Setting Toggled Sidebar to Slide Over Content
 
@@ -252,7 +252,7 @@ To toggle the sidebar for **Slide over content**, follow these steps:
 
 5.  In your emulated device's browser window, click the toggle button:
 
-	{{< figure src="/attachments/howto/front-end/use-navigation-layouts/3.8_slidingovercontent.gif"   width="350"  >}}
+	{{< figure src="/attachments/howto/front-end/use-navigation-layouts/2.2_slidingovercontent.gif"   width="350"  >}}
 
 ## 4 Read More
 

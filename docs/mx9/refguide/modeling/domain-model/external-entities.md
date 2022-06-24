@@ -26,7 +26,7 @@ To add an external entity to your app model, follow these steps:
 
 1. In the the Domain Model of you app model search in the **Data Hub** pane for the entity or data source that you want to use in your app. 
 
-    {{% alert color="info" %}}In the [Data Hub Catalog](/data-hub/data-hub-catalog/search/), an OData service may be registered mulitple times with different version numbers or deployed to different environments, all exposing the entity (dataset)) that you may want to use. Search the Data Hub Catalog first and find the one most relevant to the requirements for your app.{{% /alert %}}
+    {{% alert color="info" %}}In the [Data Hub Catalog](/data-hub/data-hub-catalog/search/), an OData service may be registered multiple times with different version numbers or deployed to different environments, all exposing the entity (dataset) that you may want to use. Search the Data Hub Catalog first and find the one most relevant to the requirements for your app.{{% /alert %}}
 
 3. Drag and drop the entity in the Domain Model. 
 
@@ -150,7 +150,7 @@ You can add any local information about the external entity in this tab.
 
 ## 3 External Entity Limitations {#limitations}
 
-External entities are the endpoints that are defined in the published OData service from the originating app. The consumed OData service document displays the values from the service metadata when the external entity is used through the **Data Hub** pane. The limitation on external entities is that they are consume-only entities. The datasets associated with the entities are maintained in the originating apps.
+External entities are the endpoints that are defined in the published OData service from the originating app. The consumed OData service document displays the values from the service metadata when the external entity is used through the **Data Hub** pane. The datasets associated with the entities are maintained in the originating apps.
 
 External entities cannot be committed. Use the [Send External Object activity](/refguide/send-external-object/) to persist changes to external entities. This means the following:
  

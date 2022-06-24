@@ -88,7 +88,7 @@ export async function getFileData(path: string) {
   const matterResult = await matter(rawFileData);
   const processedContent = await unified()
     .use(remarkParse)
-    // .use(remarkPrettier)
+    // .use(remarkPrettier) //Breaks on vercel
     .use(remarkDirective)
     .use(remarkGfm)
     .use(() => myRemarkPlugin(fullPath, matterResult) as any)

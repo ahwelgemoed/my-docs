@@ -28,6 +28,7 @@ For more information on how changes can be quickly previewed, see the [Preview a
 ### 2.2 Using the Styling Editor {#styling-editor}
 
 The styling editor is based on the editor that powers Visual Studio Code and is also used for JavaScript actions. You can find the styling files (JS, SCSS) and theme settings (JSON) inside the App Explorer, and edit them using this editor.
+
 By default, Studio Pro shows styling files on the app level and from UI resources modules, such as **Atlas_Core**. This can be changed in [preferences](/refguide/preferences-dialog/) (Edit > **Preferences** > **General** > **Interface**) or by simply right-clicking **Styling** in the App Explorer:
 
 {{< figure src="/attachments/howto/front-end/atlas-ui/customize-styling-new/styling-editor-settings.png" alt="styling editor settings" >}}
@@ -130,7 +131,7 @@ Modules that contain theme styling should be marked as UI resources modules. To 
 
 #### 4.2 Ordering UI Resource Modules
 
-When a module contains styling (SCSS/CSS), be sure it is added to the compiled CSS file in the correct order relative to other files. For example, if a theme module should overwrite styling that is defined in **Atlas_Core**, it is important that the theme module is added *after* **Atlas_Core**. 
+When a module contains styling (SCSS/CSS), be sure it is added to the compiled CSS file in the correct order relative to other files. For example, if a theme module should override styling that is defined in **Atlas_Core**, it is important that the theme module is added *after* **Atlas_Core**. 
 
 You can set an explicit order in the theme settings (**App Settings** > **Theme**). This contains a list of all modules that are marked as UI resource modules, and allows you to set the explicit order in which they are added to the CSS file. Note that the lower a module is ordered in the list, the higher its precedence. For example, an app that uses a company theme module could be ordered as follows:
 
@@ -162,9 +163,10 @@ To create a re-usable theme module, do the following:
 To open your Mendix app directory from Studio Pro, click **App** in the top menu-bar, then click **Show App Directory in Explorer**.
 {{% /alert %}}
 
-3. Cut the variables from *theme/web/custom-variables.scss* and paste them in *themesource/mytheme/web/custom-variables.scss*.
+3. Copy the variables from *theme/web/custom-variables.scss* and paste them in *themesource/mytheme/web/custom-variables.scss*. Remove all the variables from the *theme/web/custom-variables.scss*. The *theme/web/custom-variables.scss* file should now be empty.
+
    
-4. In *theme/web/custom-variables.scss* add `@import "../../themesource/mytheme/web/custom-variables.scss` to the top of the file, replacing “mytheme” with your module name.
+4. In *theme/web/custom-variables.scss* add `@import "../../themesource/mytheme/web/custom-variables.scss` to the top of the file, replacing “mytheme” with your module name. The *theme/web/custom-variables.scss* file should only contain an import statement to your "mytheme" custom variables.
 
 The two files should end up looking like this:
 
@@ -173,6 +175,8 @@ The two files should end up looking like this:
 ```scss
 @import "../../themesource/mytheme/web/custom-variables.scss";
 ```
+
+Any variables still in the *theme/web/custom-variables.scss* will override the variables in *themesource/mytheme/web/custom-variables.scss* 
 
 *themesource/mytheme/web/custom-variables.scss*:
 
@@ -570,8 +574,36 @@ excludeHelpers
 
 ## 9 Customizing index.html (Web) {#custom-web}
 
-By default, Mendix generates the *index.html* (the page that is loaded to start the app), based on the app configuration. In some cases it may be needed to customize this HTML, which can be done by creating a file called *index.html* in the **theme/web** folder. To make sure that your file has the right structure, we recommend you copy *index-example.html* from the **deployment/web** folder to the **theme/web**, rename it to *index.html*, and then use it as a starting point. This file will be created after you have deployed your app locally at least once.
+By default, Mendix generates the *index.html* (the page that is loaded to start the app) based on the app configuration. In some cases it may be needed to customize this HTML, which can be done by creating a file called *index.html* in the **theme/web** folder. To make sure that your file has the right structure, we recommend you copy *index-example.html* from the **deployment/web** folder to the **theme/web**, rename it to *index.html*, and then use it as a starting point. This file will be created after you have deployed your app locally at least once.
 
 ## 10 Customizing Unsupported Browsers (Web) {#customize-unsupported-browsers}
 
 When an end-user opens a Mendix app in an unsupported browser, a page is shown that the current browser is not supported and explain which other browsers can be used. To customize this screen, you can create a custom html file called *unsupported-browser.html* in the **theme/web** folder. If desired, you can copy *unsupported-browser.html* from the **deployment/web** folder to the **theme/web** folder and use it as a starting point. This file will be created after you have deployed your app locally at least once.
+
+## 11 Serving Fonts Locally (Web) {#local-fonts}
+
+By default, Atlas uses the font Open Sans, and the font files are loaded from the Google Fonts Content Delivery Network (CDN). While the Google Fonts CDN is convenient, you might need to change your font file service location.
+
+For example, you may need to change your font file service location in order to comply with stricter [CSP]( /refguide/progressive-web-app/csp/) policies, or if you cannot use Google Fonts CDN due to business requirements. Fortunately, you can serve fonts from your own local server instead of using the Google Fonts CDN using the sections below.
+
+### 11.1 Downloading Font Files
+
+Font files prepared for use with Atlas are available at this [GitHub repository](https://github.com/mendix/open-sans). Download the repository’s content by clicking the **Code** button and selecting **Download ZIP**. 
+
+Unzip the ZIP file and place the **fonts** folder into the **/theme/web/** folder of your Mendix app. Make sure that *open-sans.css* and the font files are located directly in the **/theme/web/fonts/** folder of your Mendix app.
+
+### 11.2 Using Local Font Files
+
+Open your Mendix app's *theme/web/custom-variables.scss* file and locate the following line:
+
+```
+$font-family-import: https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700
+```
+
+Replace that line with the following code:
+
+```
+$font-family-import: ./fonts/open-sans.css
+```
+
+Then, save your changes. Run your app and you should see fonts rendered correctly

@@ -186,7 +186,7 @@ For the microflow that you use in your [scheduled events](/refguide/scheduled-ev
 
 #### 3.4.7 App Microflows
 
-Your [app settings](/refguide/project-settings/) provide three events that can trigger a microflow. In these cases we advise writing out the purpose as a microflow name. These microflows are defined only once per app and should preferably call sub-microflows to do the actual processing. These sub-microflows should have a prefix indicated below:
+Your [app settings](/refguide/app-settings/) provide three events that can trigger a microflow. In these cases we advise writing out the purpose as a microflow name. These microflows are defined only once per app and should preferably call sub-microflows to do the actual processing. These sub-microflows should have a prefix indicated below:
 
 | Event Type      | Microflow Name | Sub-Microflow Prefix |
 |-----------------|----------------|----------------------|
@@ -220,7 +220,12 @@ For integrations, you have the following types of microflow:
 
 | Document Type                             | Prefix    |
 |-------------------------------------------|-----------|
-| Layout                                    | LAY\_  |
+| Layout for responsive (web)               | Responsive\_  |
+| Layout for tablet (web)                   | Tablet\_  |
+| Layout for phone (web)                    | Phone\_  |
+| Layout for native phone                   | NativePhone\_  |
+| Layout for popup                          | Popup\_  |
+| Layout Atlas specific                     | Atlas\_  |
 | Snippet                                   | SNIP\_ |
 
 #### 3.5.2 Enumerations

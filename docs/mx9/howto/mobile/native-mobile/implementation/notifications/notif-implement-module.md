@@ -9,7 +9,7 @@ tags: ["mobile", "native", "push", "local", "firebase, ios, android"]
 
 ## 1 Introduction
 
-Now that you have implemented the prerequisites in your app, you must implement the [Push Notifications Connector](https://marketplace.mendix.com/link/component/3003) module. Complete the steps below to enable the basic configuration.
+Now that you have implemented the prerequisites in your app, you must implement the [Push Notifications Connector](/appstore/modules/push-notifications/) module. Complete the steps below to enable the basic configuration.
 
 ## 2 Downloading From Marketplace
 
@@ -35,6 +35,6 @@ In order for your app to use to use the Push Connections Module, configure the f
 1. Add a new open page navigation item to the **Responsive** navigation profile.
 1. Select the **Administration** page from the **PushNotifications** module. This page is located in the **_USE ME/Web** folder of the **PushNotifications** module.
 1. Add a microflow sub-call to your **Afterstartup** microflow for the microflow **AfterStartup_PushNotifications**:<br />
-	a. If you do not have an **Afterstartup** microflow configured yet, read the [After Startup](/refguide/project-settings/#after-startup) section of *App Settings* for more information.
+	a. If you do not have an **Afterstartup** microflow configured yet, read the [After Startup](/refguide/app-settings/#after-startup) section of *App Settings* for more information.
 
 Now you are able to start your app and move on to the next step: [Set Up the Google Firebase Cloud Messaging Server](/howto/mobile/setting-up-google-firebase-cloud-messaging-server/).
