@@ -5,13 +5,23 @@ import fs from "fs";
 import glob from "glob";
 
 export function myRemarkPlugin(fullPath: string, matterResult: any) {
+  let amIAnAlert = false;
   return async (tree: any) => {
     await visit(tree, (node) => {
       if (node.value) {
+        if (amIAnAlert) {
+          const text = toString(node);
+          const html = text;
+          node.type = "html";
+          node.children = undefined;
+          node.value = html;
+        }
+
         if ((node.value as string).match(/{{< figure/gm)) {
           const imgRegex = /< figure.*?src="(.*?)"[^>]+>/g;
           const imageSrc = imgRegex.exec(node.value);
           if (imageSrc) {
+            console.log("imageSrc", imageSrc);
             let data = node.data || (node.data = {});
             const attributes = node.attributes || {};
             data.hName = "img";
@@ -38,6 +48,18 @@ export function myRemarkPlugin(fullPath: string, matterResult: any) {
         //     };
         //   }
         // }
+        if (
+          (node.value as string).match(/{{% \/alert %}}/gm) ||
+          (node.value as string).match(/{{%\/alert %}}/gm)
+        ) {
+          const text = toString(node).replace(`{{% /alert %}}`, "");
+          amIAnAlert = false;
+          const html = `</div>${text}`;
+          node.type = "html";
+          node.children = undefined;
+          node.value = html;
+        }
+
         if ((node.value as string).match(/{{% alert color="warning" %}}/gm)) {
           const trigger = `{{% alert color="warning" %}}`;
           if (trigger.length === node.value.length) {
@@ -61,27 +83,21 @@ export function myRemarkPlugin(fullPath: string, matterResult: any) {
           (node.value as string).match(/{{%alert type="info" %}}/gm)
         ) {
           const trigger = `{{% alert color="info" %}}`;
-          if (trigger.length === node.value.length) {
-            const html = `<div class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4" role="alert">`;
-            node.type = "html";
-            node.children = undefined;
-            node.value = html;
-          } else {
-            const text = toString(node);
-            const parsedText = text
-              .replace(`{{% alert color="info" %}}`, "")
-              .replace(`{{%alert type="info" %}}`, "")
-              .replace(`{{% /alert %}}`, "");
-            const html = `<div class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4" role="alert">${parsedText}</div>`;
-            node.type = "html";
-            node.children = undefined;
-            node.value = html;
-          }
+          // if (trigger.length === node.value.length) {
+          const text = toString(node).replace(
+            trigger,
+            `<div class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4" role="alert">`
+          );
+          const html = `${text}`;
+          node.type = "html";
+          node.children = undefined;
+          node.value = html;
         }
         if (
           (node.value as string).match(/{{% alert color="success" %}}/gm) ||
           (node.value as string).match(/{{%alert type="success" %}}/gm)
         ) {
+          amIAnAlert = true;
           const trigger = `{{% alert color="success" %}}`;
           if (trigger.length === node.value.length) {
             const html = `<div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4" role="alert">`;
@@ -99,15 +115,6 @@ export function myRemarkPlugin(fullPath: string, matterResult: any) {
             node.children = undefined;
             node.value = html;
           }
-        }
-        if (
-          (node.value as string).match(/{{% \/alert %}}/gm) ||
-          (node.value as string).match(/{{%\/alert %}}/gm)
-        ) {
-          const html = `</div>`;
-          node.type = "html";
-          node.children = undefined;
-          node.value = html;
         }
       }
 
@@ -148,7 +155,7 @@ export function myRemarkPlugin(fullPath: string, matterResult: any) {
               const splitfileExtention = removedEmptyStrings[0].split(".md");
               let text = toString(node);
               const html = `
-							<a class="text-blue-600 hover:text-blue-700" href="${splitfileExtention[0]}">
+							<a class="text-blue-600 hover:text-blue-700" href="${splitfileExtention[0]}.md">
 							${text}
 							</a>`;
               node.type = "html";

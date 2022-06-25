@@ -12,6 +12,7 @@ import rehypeStringify from "rehype-stringify";
 
 import { unified } from "unified";
 import { myRemarkPlugin } from "./mendixRemarkPlugin";
+import remarkPrettier from "remark-prettier";
 
 export type FilesInPath = {
   fullPath: string;
